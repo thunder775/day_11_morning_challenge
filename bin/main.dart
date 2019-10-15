@@ -7,6 +7,20 @@
 // incrementToTop([4, 3, 4]) ➞ 1
 // incrementToTop([3, 3, 3]) ➞ 0
 // incrementToTop([3, 10, 3]) ➞ 14
+import 'dart:math';
+
+int incrementToTop(List<int> list) {
+  int x = list.reduce(max);
+  int count = 0;
+
+  for (int m in list) {
+    while (m != x) {
+      m++;
+      count += 1;
+    }
+  }
+  return count;
+}
 
 // Challenge 2
 // In BlackJack, cards are counted with -1, 0, 1 values:
@@ -20,8 +34,24 @@
 //  count(["A", "A", "K", "Q", "Q", "J"]) ➞ -6
 //
 //  count(["A", 5, 5, 2, 6, 2, 3, 8, 9, 7]) ➞ 5
+int count(List list) {
+  int count = 0;
+  for (var m in list) {
+    if (m == 2 || m == 3 || m == 4 || m == 5 || m == 6) {
+      count += 1;
+    } else if (m == 7 || m == 8 || m == 9) {
+      count += 0;
+    } else if (m == 10 || m == 'J' || m == 'Q' || m == 'K' || m == 'A') {
+      count -= 1;
+    }
+  }
+  return count;
+}
 
 // Challenge 3
 // Write a test case each for previous two functions you wrote
 
-main() {}
+main() {
+  print(incrementToTop([1, 2, 7]));
+  print(count([5, 9, 10, 3, "J", "A", 4, 8, 5]));
+}
